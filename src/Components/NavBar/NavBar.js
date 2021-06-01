@@ -1,6 +1,7 @@
 import React from "react";
 import './NavBar.css';
 import navBarLogo from '~/../../src/assets/navBarLogo.gif';
+import { CartWidget } from '../CartWidget/CartWidget.js';
 
 export function NavBar() {
     return(
@@ -22,6 +23,8 @@ export function NavBar() {
                     <a className='nav-link' href='#'>HP</a>
                 </li>
             </ul>
+            
+            <CartWidget></CartWidget>
         </nav>
     )
 }
