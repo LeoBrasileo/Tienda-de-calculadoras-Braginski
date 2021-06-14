@@ -2,12 +2,15 @@ import React from "react";
 import './NavBar.css';
 import navBarLogo from '~/../../src/assets/navBarLogo.gif';
 import { CartWidget } from '../CartWidget/CartWidget.js';
+import { Link } from 'react-router-dom';
 
 export function NavBar() {
     return(
         <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-            <img alt='logo' className='navLogo' src={navBarLogo}></img>
-            <a className="navbar-brand tittle">Tienda de calculadoras</a>
+            <Link to="/">
+                <img alt='logo' className='navLogo' src={navBarLogo}></img>
+            </Link>
+            <a className="navbar-brand tittle" href="/">Tienda de calculadoras</a>
 
             <ul className='navbar-nav mr-auto'>
                 <li className='nav-item'>

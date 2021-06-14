@@ -23,8 +23,6 @@ export function ItemListContainer (props){
     
     return(
         <div>
-            <h5 className="card-tittle">{props.tittle}</h5>
-            <p className="card-text">{props.message}</p>
             <ItemList items={items}></ItemList>
         </div>
     )
