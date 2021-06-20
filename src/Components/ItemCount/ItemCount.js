@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./ItemCount.css"
 
-export function ItemCount ({stock, onAdd,onSubstract}) {
+const ItemCount = ({stock, onAdd,onSubstract}) => {
     const [count,setCount] = useState(1);
     return(
         <div className="input-group mb-3">
@@ -11,3 +11,5 @@ export function ItemCount ({stock, onAdd,onSubstract}) {
         </div>
     );
 }
+
+export default ItemCount

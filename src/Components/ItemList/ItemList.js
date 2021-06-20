@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Item from '../Item/Item.js';
 import ItemDetail from '../ItemDetail/ItemDetail.js';
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer.js';
-import { ItemCount } from '../ItemCount/ItemCount.js';
+import ItemCount from '../ItemCount/ItemCount.js';
 
 const ItemList = (({items}) => {
     const onAdd = () => {console.log("llamado a onAdd")}
