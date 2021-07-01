@@ -10,7 +10,7 @@ export function NavBar() {
             <NavLink to="/">
                 <img alt='logo' className='navLogo' src={navBarLogo}></img>
             </NavLink>
-            <a className="navbar-brand tittle" href="/">Tienda de calculadoras</a>
+            <NavLink className="navbar-brand tittle" to="/">Tienda de calculadoras</NavLink>
 
             <ul className='navbar-nav mr-auto'>
                 <li className='nav-item'>
@@ -24,7 +24,9 @@ export function NavBar() {
                 </li>
             </ul>
             
-            <CartWidget></CartWidget>
+            <NavLink to="/cart">
+                <CartWidget/>
+            </NavLink>
         </nav>
     )
 }
