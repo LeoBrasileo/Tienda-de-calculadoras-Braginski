@@ -17,11 +17,9 @@ const CartContextProvider = ({ defaultValue = [], children }) => {
     }
 
     function removeItem (itemId) {
-        for (let i = 0; i < items.length; i++){
-            if (items[i].id === itemId) {
-                setItems(items.splice(i,1));
-            }
-        }
+        setItems(items.filter((item) => {
+            return item.id !== itemId;
+        }))
     }
 
     function clear () {
@@ -42,7 +40,17 @@ const CartContextProvider = ({ defaultValue = [], children }) => {
         return buy;
     }
 
-    return <CartContext.Provider value={{ items, addItem, removeItem, clear, isInCart, getTotalBuys }}>
+    function getTotalPrice () {
+        let price = 0;
+        items.forEach(item => {
+            if (item && item.quantity > 0){
+                price = price + (item.quantity * item.price);
+            }
+        });
+        return price;
+    }
+
+    return <CartContext.Provider value={{ items, addItem, removeItem, clear, isInCart, getTotalBuys, getTotalPrice }}>
         {children}
     </CartContext.Provider>
 }

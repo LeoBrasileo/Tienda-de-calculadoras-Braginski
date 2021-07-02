@@ -12,5 +12,5 @@ export function CartWidget () {
             <FontAwesomeIcon icon={faShoppingCart}/>
             <span>{getTotalBuys()}</span>
         </div>}
-    </>)
+    </>);
 }
