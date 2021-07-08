@@ -11,13 +11,13 @@ const ItemDetailContainer = (() => {
     useEffect(() => {
         const db = getFirestore();
         const itemCollection = db.collection("items");
-        const dbItem = itemCollection.where("id","==",parseInt(itemId));
+        const dbItem = itemCollection.doc(itemId);
 
-        dbItem.get().then((snapshot) => {
-            if (snapshot.size === 0){
+        dbItem.get().then((doc) => {
+            if (doc.size === 0){
                 console.log("No hay resultados");
             }
-            setItem(snapshot.docs.map(doc => doc.data())[0])
+            setItem({ id: doc.id, ...doc.data() })
         }).catch((error) => {
             console.error(error);
         });
