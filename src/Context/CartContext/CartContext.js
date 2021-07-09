@@ -12,7 +12,15 @@ const CartContextProvider = ({ defaultValue = [], children }) => {
             console.log(`${value.name} agregado al carro`);
         }
         else {
-            console.log("El item ya esta en el carro");
+            if (isStockAvailable(value.id)){
+                //change quantity value in specified item
+                let elementIndex = items.findIndex(x => x.id === value.id);
+                let newItems = [...items];
+                newItems[elementIndex] = {...newItems[elementIndex], quantity: ((newItems[elementIndex].quantity) + qty)};
+                setItems(newItems);
+            }else {
+                alert("No hay mas stock disponible");
+            }
         }
     }
 
@@ -28,6 +36,11 @@ const CartContextProvider = ({ defaultValue = [], children }) => {
     
     function isInCart (itemId) {
         return items.find(x => x.id === itemId);
+    }
+
+    function isStockAvailable (itemId, stockToaAdd) {
+        let it = items.find(x => x.id === itemId);
+        return it ? !((it.quantity + stockToaAdd) >= it.stock) : true;
     }
 
     function getTotalBuys () {
@@ -50,7 +63,7 @@ const CartContextProvider = ({ defaultValue = [], children }) => {
         return price;
     }
 
-    return <CartContext.Provider value={{ items, addItem, removeItem, clear, isInCart, getTotalBuys, getTotalPrice }}>
+    return <CartContext.Provider value={{ items, addItem, removeItem, clear, isInCart, getTotalBuys, getTotalPrice, isStockAvailable }}>
         {children}
     </CartContext.Provider>
 }

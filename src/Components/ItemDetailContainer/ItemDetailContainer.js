@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ItemDetailContainer.css';
+import loadingLogo from '../../assets/loading.gif';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { getFirestore } from '../../firebase';
 
 const ItemDetailContainer = (() => {
     const [item, setItem] = useState({});
+    const [isLoading, setLoading] = useState(true);
     const { itemId } = useParams();
 
     useEffect(() => {
@@ -20,12 +22,15 @@ const ItemDetailContainer = (() => {
             setItem({ id: doc.id, ...doc.data() })
         }).catch((error) => {
             console.error(error);
+        }).finally(() => {
+            setLoading(false);
         });
     }, {});
     
     return(
         <div className="item-detail-container">
-            <ItemDetail item={item} name={item.name} img={item.img} price={item.price} description={item.description} stock={item.stock}></ItemDetail>
+            <>{ isLoading ? <img src={loadingLogo}/> :
+            <ItemDetail item={item} name={item.name} img={item.img} price={item.price} description={item.description} stock={item.stock}></ItemDetail> }</>
         </div>
     )
 })

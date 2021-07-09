@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const ItemDetail = (({item, id, img, name, description, price, stock}) => {
     const [quantity, setQuantity] = useState(1);
     const { addItem } = useContext(CartContext);
-    const { isInCart } = useContext(CartContext);
+    const { isStockAvailable } = useContext(CartContext);
 
     const onAdd = () => {
         setQuantity(quantity + 1);
@@ -15,7 +15,7 @@ const ItemDetail = (({item, id, img, name, description, price, stock}) => {
         setQuantity(quantity - 1);
     };
     const buy = () => {
-        if (!isInCart(item.id)){
+        if (isStockAvailable(item.id, quantity)){
             document.querySelector("#finish").classList.remove("hide");
             document.querySelector("#finish2").classList.remove("hide");
             document.querySelector("#finish-text").classList.remove("hide");
@@ -23,7 +23,7 @@ const ItemDetail = (({item, id, img, name, description, price, stock}) => {
             document.querySelector("#buy").classList.add("hide");
             addItem(item, quantity);
         }else {
-            alert("Ya se encuentra este producto en el carro")
+            alert("Ya se encuentra todo el stock de este producto en el carro")
         }
     };
 
@@ -42,7 +42,7 @@ const ItemDetail = (({item, id, img, name, description, price, stock}) => {
                     <button type="button" id="finish2" className="btn btn-secondary hide">Seguir navegando</button>
                 </NavLink>
                 <NavLink to="/cart">
-                    <button type="button" id="finish" className="btn btn-success hide">Finalizar compra</button>
+                    <button type="button" id="finish" className="btn btn-success hide">Al carrito</button>
                 </NavLink>
                 <span id="finish-text" className="hide"> {quantity} unidades</span>
             </div>
