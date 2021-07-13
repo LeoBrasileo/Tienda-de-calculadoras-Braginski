@@ -13,6 +13,7 @@ const Cart = () => {
     const { clear } = useContext(CartContext);
     const { getTotalPrice } = useContext(CartContext);
     const [finish, setFinish] = useState(false);
+    const [orderId, setOrderId] = useState('');
 
     const sendBuyOrder = () => {
       let email = document.querySelector('#input-mail').value;
@@ -44,13 +45,14 @@ const Cart = () => {
       });
 
       ordersCollection.add(newOrder).then(({ id }) => {
-        alert(`Compra registrada correctamente, id: ${id}`);
+        setOrderId(id);
+        document.querySelector('#alert-final').hidden = false;
       }).catch(e => {
         console.error(e);
       }).finally(() => {
         setFinish(false);
         clear();
-        window.location.href = '/';
+        //setTimeout(() => { window.location.href = '/'; },2500);
       });
     };
 
@@ -85,6 +87,7 @@ const Cart = () => {
             { !finish && <button style={{'margin': '20px'}} className="btn btn-success" onClick={() => {setFinish(true);}}>Generar orden de compra</button>}
         </div> : 
         <div>
+            <div className="alert alert-success" id="alert-final" hidden>Compra registrada correctamente, id: {orderId}</div>
             <h1>No hay calculadoras en el carro</h1>
             <NavLink to='/'>
                 Seguir navegando
