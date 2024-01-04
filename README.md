@@ -1,10 +1,10 @@
 # Braginski´s Calculator store
-Proyecto en React.js sobre web-commerce de calculadoras.
+React.js project about web-commerce of calculators.
 
-Utilizando las librerias:
-Bootstrap v5.0.1
-Firebase v8.0.2
-React v17.0.2
-React-Router-Dom v5.2.0
+Using libraries:\
+Bootstrap\
+Firebase\
+React\
+React-Router-Dom
 
 ![Calculator Store Demo](/demo.gif)
